@@ -1,13 +1,13 @@
 import java.util.*;
 class Numbers
 {
-    int no=0;
+    int no;
     Numbers(int num)
     {
         this.no=num;
     }
 
-    int calFactorial()
+    long calFactorial()
     {
         int fact=1;
         for(int i=1;i<=this.no;i++)
@@ -31,17 +31,37 @@ class Numbers
         }
     }
 
-    int NOD()
+    int NOD(int no)
     {
 
         int cnt=0;
-        int temp=this.no;
+        int temp=no;
         while(temp!=0)
         {
             cnt++;
             temp=temp/10;
         }
         return cnt;
+    }
+
+    boolean isArmstrong()
+    {
+        int temp=this.no;
+        int digi=0,sum=0;
+        int Mult=1;
+        while (temp!=0)
+        {
+            digi=temp%10;
+            Mult=1;//always remember to reset value of multi to 1
+            for(int i=1;i<=NOD(this.no);i++)
+            {
+                Mult=Mult*digi;
+            }
+            sum+=Mult;
+            temp=temp/10;
+        }
+        System.out.println(sum);
+        return this.no==sum;
     }
 }
 
@@ -53,7 +73,14 @@ public class Helper {
         Numbers fobj=new Numbers(no);
         System.out.println("Fact is equal to: "+ fobj.calFactorial());
         fobj.fibSeries();
-        System.out.println("No of Digi are "+fobj.NOD());
+        if(fobj.isArmstrong())
+        {
+            System.out.println("Armstrong");
+        }
+        else
+        {
+            System.out.println("Not a Armstrong Number");
+        }
         sobj.close();
     }
 }
