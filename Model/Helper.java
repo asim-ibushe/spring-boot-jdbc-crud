@@ -59,6 +59,10 @@ class Numbers
             }
             sum+=Mult;
             temp=temp/10;
+            if(sum>this.no)
+            {
+                break;// code optimization using condition check
+            }
         }
         System.out.println(sum);
         return this.no==sum;
